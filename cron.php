@@ -173,15 +173,23 @@ foreach ($users as $userRow) {
                    ->execute([$currentHigh, round($cmp*(1-$pullPct/100),2), $trackerId]);
             }
 
-            // BUY signal on pullback
+            // BUY or SELL signal on pullback
             if ($m1Activated && $currentHigh > 0) {
-                $buyZone = round($currentHigh * (1 - $pullPct/100), 2);
-                if ($m1Status==='activated' && $cmp<=$buyZone && $s['buyCount']<$settings['maxBuyCount']) {
+                $buyZone  = round($currentHigh * (1 - $pullPct/100), 2);
+                $maxedOut = ($s['buyCount'] >= $settings['maxBuyCount']);
+                if ($m1Status==='activated' && $cmp<=$buyZone) {
                     $dropPct = round((($currentHigh-$cmp)/$currentHigh)*100,1);
                     $pp      = $avgPrice>0 ? round((($cmp-$avgPrice)/$avgPrice)*100,2) : 0;
-                    $msg     = "{$s['symbol']} M1 pullback! Peak ₹".number_format($currentHigh,2)
+                    if (!$maxedOut) {
+                        $msg = "{$s['symbol']} M1 pullback! Peak ₹".number_format($currentHigh,2)
                              . " → CMP ₹".number_format($cmp,2)." (−{$dropPct}%). 🔴 BUY signal.";
-                    createSignal($portfolioId,$userId,'BUY',$cmp,$avgPrice,$pp,$msg);
+                        createSignal($portfolioId,$userId,'BUY',$cmp,$avgPrice,$pp,$msg);
+                    } else {
+                        // MAX buys reached — pullback from trailing high = SELL signal
+                        $msg = "{$s['symbol']} M1 trail pullback! Peak ₹".number_format($currentHigh,2)
+                             . " → CMP ₹".number_format($cmp,2)." (−{$dropPct}%). Max buys reached. 🟢 SELL signal.";
+                        createSignal($portfolioId,$userId,'SELL',$cmp,$avgPrice,$pp,$msg);
+                    }
                     $db->prepare("UPDATE st_m1tracker SET status='triggered' WHERE id=?")->execute([$trackerId]);
                     $signals++;
                 }
