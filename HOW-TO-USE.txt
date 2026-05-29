@@ -1,0 +1,43 @@
+════════════════════════════════════════════════
+  FinOps PWA Kit — How to Use in Every Project
+════════════════════════════════════════════════
+
+STEP 1 — Upload these files to your project root on Hostinger:
+  ├── manifest.json
+  ├── sw.js
+  └── icons/
+        ├── icon-32.png
+        ├── icon-192.png
+        ├── icon-512.png
+        └── icon-maskable.png
+
+STEP 2 — Edit manifest.json for each project:
+  Change only these fields:
+    "name"        → Full project name  (e.g. "EasyLedger Pro")
+    "short_name"  → Short name         (e.g. "Ledger")
+    "start_url"   → Your main PHP file (e.g. "./dashboard.php")
+    "description" → Short description
+
+STEP 3 — Edit sw.js for each project:
+  Change only these 2 things:
+    Line 9:  const CACHE_NAME   = 'easyledger-v1';
+    Line 10: const STATIC_CACHE = 'easyledger-static-v1';
+  Then add your CSS/JS files to the PRE_CACHE list.
+
+STEP 4 — Add these 2 lines to your main PHP file's <head>:
+  <link rel="manifest" href="manifest.json">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js');
+    }
+  </script>
+
+PROJECT NAME REFERENCE:
+  EasyLedger Pro  → CACHE_NAME = 'easyledger-v1'
+  OPM             → CACHE_NAME = 'opm-v1'
+  AuditFlow Pro   → CACHE_NAME = 'auditflow-v1'
+  FinOps CRM      → CACHE_NAME = 'finopscrm-v1'
+  AquaWash        → CACHE_NAME = 'aquawash-v1'
+  BankSync        → CACHE_NAME = 'banksync-v1'
+  Voters Manager  → CACHE_NAME = 'voters-v1'
+════════════════════════════════════════════════
