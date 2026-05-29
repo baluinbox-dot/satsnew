@@ -96,7 +96,7 @@ if (empty($_SESSION['userId'])) { header('Location: login.php'); exit; }
           <div id="portfolioSignalBadges"></div>
         </div>
         <div class="filter-bar">
-          <input type="text" class="filt-input" id="dashSearch" placeholder="🔍 Search symbol..." oninput="STAS._applyDashFilter()">
+          <input type="text" class="filt-input" id="dashSearch" placeholder="🔍 Search symbol..." autocomplete="off" oninput="STAS._applyDashFilter()" onchange="STAS._applyDashFilter()">
           <button class="filt-clear" onclick="STAS._clearDashFilter()">✕ Clear</button>
           <span class="filt-badge" id="dashFilterBadge" style="display:none;"></span>
         </div>
@@ -150,7 +150,7 @@ if (empty($_SESSION['userId'])) { header('Location: login.php'); exit; }
     <div class="card-panel">
       <div class="panel-header"><span>💼 All Holdings</span><button class="btn-primary-sm" onclick="STAS.openAddStockModal()">+ Add Stock</button></div>
       <div class="filter-bar">
-        <input type="text" class="filt-input" id="portSearch" placeholder="🔍 Search symbol..." oninput="STAS._applyPortFilter()">
+        <input type="text" class="filt-input" id="portSearch" placeholder="🔍 Search symbol..." autocomplete="off" oninput="STAS._applyPortFilter()" onchange="STAS._applyPortFilter()">
         <button class="filt-clear" onclick="STAS._clearPortFilter()">✕ Clear</button>
         <span class="filt-badge" id="portFilterBadge" style="display:none;"></span>
       </div>
@@ -189,7 +189,7 @@ if (empty($_SESSION['userId'])) { header('Location: login.php'); exit; }
     <div class="card-panel">
       <div class="panel-header"><span>🔔 All Signals</span><div style="display:flex;gap:8px;"><select id="signalFilter" class="form-select form-select-sm" style="width:130px;" onchange="STAS._applySigFilter()"><option value="">All Types</option><option value="BUY">BUY only</option><option value="SELL">SELL only</option></select><button class="btn-outline-sm" onclick="STAS.markAllRead()">Mark all read</button></div></div>
       <div class="filter-bar">
-        <input type="text" class="filt-input" id="sigSearch" placeholder="🔍 Search symbol..." oninput="STAS._applySigFilter()">
+        <input type="text" class="filt-input" id="sigSearch" placeholder="🔍 Search symbol..." autocomplete="off" oninput="STAS._applySigFilter()" onchange="STAS._applySigFilter()">
         <span class="filt-lbl">From</span>
         <input type="date" class="filt-date" id="sigFrom" onchange="STAS._applySigFilter()">
         <span class="filt-lbl">To</span>
@@ -207,7 +207,7 @@ if (empty($_SESSION['userId'])) { header('Location: login.php'); exit; }
     <div class="card-panel">
       <div class="panel-header"><span>🔄 Transaction History</span></div>
       <div class="filter-bar">
-        <input type="text" class="filt-input" id="txSearch" placeholder="🔍 Search symbol..." oninput="STAS._applyTxFilter()">
+        <input type="text" class="filt-input" id="txSearch" placeholder="🔍 Search symbol..." autocomplete="off" oninput="STAS._applyTxFilter()" onchange="STAS._applyTxFilter()">
         <span class="filt-lbl">From</span>
         <input type="date" class="filt-date" id="txFrom" onchange="STAS._applyTxFilter()">
         <span class="filt-lbl">To</span>
@@ -228,7 +228,7 @@ if (empty($_SESSION['userId'])) { header('Location: login.php'); exit; }
     <div class="card-panel">
       <div class="panel-header"><span>🎯 M1 Cycle Tracker</span><div class="m1-legend"><span class="dot green"></span>Active &nbsp;<span class="dot amber"></span>Waiting &nbsp;<span class="dot gray"></span>Not yet</div></div>
       <div class="filter-bar">
-        <input type="text" class="filt-input" id="m1Search" placeholder="🔍 Search symbol..." oninput="STAS._applyM1Filter()">
+        <input type="text" class="filt-input" id="m1Search" placeholder="🔍 Search symbol..." autocomplete="off" oninput="STAS._applyM1Filter()" onchange="STAS._applyM1Filter()">
         <button class="filt-clear" onclick="STAS._clearM1Filter()">✕ Clear</button>
         <span class="filt-badge" id="m1FilterBadge" style="display:none;"></span>
       </div>
@@ -245,7 +245,7 @@ if (empty($_SESSION['userId'])) { header('Location: login.php'); exit; }
         <button class="btn-outline-sm" onclick="STAS.loadReports()">🔄 Refresh</button>
       </div>
       <div class="filter-bar">
-        <input type="text" class="filt-input" id="repSearch" placeholder="🔍 Search symbol..." oninput="STAS._applyRepFilter()">
+        <input type="text" class="filt-input" id="repSearch" placeholder="🔍 Search symbol..." autocomplete="off" oninput="STAS._applyRepFilter()" onchange="STAS._applyRepFilter()">
         <button class="filt-clear" onclick="STAS._clearRepFilter()">✕ Clear</button>
         <span class="filt-badge" id="repFilterBadge" style="display:none;"></span>
       </div>
@@ -276,7 +276,7 @@ if (empty($_SESSION['userId'])) { header('Location: login.php'); exit; }
     <div class="card-panel">
       <div class="panel-header"><span>👥 User Management</span></div>
       <div class="filter-bar">
-        <input type="text" class="filt-input" id="usrSearch" placeholder="🔍 Search name or email..." oninput="STAS._applyUsrFilter()">
+        <input type="text" class="filt-input" id="usrSearch" placeholder="🔍 Search name or email..." autocomplete="off" oninput="STAS._applyUsrFilter()" onchange="STAS._applyUsrFilter()">
         <button class="filt-clear" onclick="STAS._clearUsrFilter()">✕ Clear</button>
         <span class="filt-badge" id="usrFilterBadge" style="display:none;"></span>
       </div>
